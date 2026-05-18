@@ -3,11 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sorry Ammu... 🥺❤️</title>
+    <title>For My Ammu... 🥺❤️</title>
+    <!-- Google Fonts Imports -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
+
+    <!-- 1. Interactive Envelope Layer -->
+    <div class="envelope-wrapper" id="envelopeWrapper" onclick="openLetter()">
+        <div class="envelope">
+            <div class="flap"></div>
+            <div class="pocket"></div>
+            <div class="heart-seal">❤️</div>
+            <p class="click-text">Tap to open, Ammu... ✨</p>
+        </div>
+    </div>
+
+    <!-- 2. Main Letter Card Layer (Initially Hidden) -->
+    <div class="container hidden" id="mainContainer">
         <div class="card">
             <div class="emoji-section">
                 <span id="emoji">🥺</span>
@@ -21,23 +37,22 @@
 
             <div class="btn-group">
                 <button id="acceptBtn" onclick="accepted()">Manippaya? (Yes)</button>
-                <button id="noBtn" onmouseover="moveButton()">No 😡</button>
+                <button id="noBtn" onmouseover="moveButton()" onclick="moveButton()" ontouchstart="moveButton()">No 😡</button>
             </div>
 
             <!-- Success Hidden Message -->
-            <div id="successMessage" class="hidden">
+            <div id="successMessage" class="hidden-final">
                 <h2>I knew you would forgive me! Love you so much Ammu! 🥰💖</h2>
                 <div class="hearts">❤️❤️❤️</div>
             </div>
         </div>
     </div>
 
-    <!-- Background Music Link (Change inside the src if you have another favorite track) -->
+    <!-- Romantic Background Music Loop -->
     <audio id="bgMusic" loop>
         <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
     </audio>
 
     <script src="script.js"></script>
 </body>
-                    </html>
-                    
+</html>
