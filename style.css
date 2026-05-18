@@ -1,74 +1,115 @@
-body{
-    margin:0;
-    font-family: Arial;
-    background: linear-gradient(120deg,#ffcccc,#ffe6e6,#fff);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.card{
-    background:white;
-    padding:30px;
-    width:70%;
-    max-width:500px;
-    text-align:center;
-    border-radius:20px;
-    box-shadow:0 0 20px gray;
-    animation: fadeIn 2s ease-in-out;
+body {
+    background: linear-gradient(135deg, #ffe5ec, #ffc2d1);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }
 
-.profile{
-    width:140px;
-    height:140px;
-    border-radius:50%;
-    object-fit:cover;
-    border:4px solid red;
-    margin-top:-80px;
+.container {
+    width: 100%;
+    max-width: 450px;
+    padding: 20px;
 }
 
-h1{
-    color:red;
+.card {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 40px 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+    border: 2px solid #ffb3c6;
 }
 
-p{
-    font-size:18px;
-    color:#333;
-    line-height:1.6;
+.emoji-section {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    animation: float 3s ease-in-out infinite;
 }
 
-button{
-    margin-top:15px;
-    padding:10px 20px;
-    border:none;
-    background:red;
-    color:white;
-    border-radius:10px;
-    cursor:pointer;
+h1 {
+    color: #ff4d6d;
+    font-size: 2rem;
+    margin-bottom: 15px;
 }
 
-button:hover{
-    background:darkred;
+.message {
+    color: #4a4a4a;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
 }
 
-/* fade animation */
-@keyframes fadeIn{
-    from{opacity:0; transform:scale(0.8);}
-    to{opacity:1; transform:scale(1);}
+.btn-group {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 50px;
+    position: relative;
 }
 
-/* floating hearts */
-body::before{
-    content:"💔 💖 💔 💖 💔";
-    position:absolute;
-    top:0;
-    width:100%;
-    font-size:30px;
-    animation: float 6s linear infinite;
+button {
+    padding: 12px 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-@keyframes float{
-    0%{transform:translateY(-50px);}
-    100%{transform:translateY(100vh);}
+#acceptBtn {
+    background-color: #ff4d6d;
+    color: white;
+    box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
+}
+
+#acceptBtn:hover {
+    background-color: #ff758f;
+    transform: scale(1.05);
+}
+
+#noBtn {
+    background-color: #6c757d;
+    color: white;
+    position: absolute;
+    right: 30px;
+}
+
+.hidden {
+    display: none;
+    margin-top: 25px;
+    animation: fadeIn 1s ease-in-out forwards;
+}
+
+.hidden h2 {
+    color: #ff1493;
+    font-size: 1.4rem;
+    line-height: 1.4;
+}
+
+.hearts {
+    font-size: 2rem;
+    margin-top: 10px;
+}
+
+/* Float Animation for Emoji */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Fade in for success text */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
