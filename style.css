@@ -14,12 +14,28 @@ body {
     overflow: hidden;
 }
 
-/* --- Envelope Design Styles --- */
+/* --- Multi-step control --- */
+.step {
+    width: 100%;
+    max-width: 420px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s ease-in-out;
+}
+
+.hidden {
+    display: none !important;
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+/* --- Envelope Framework --- */
 .envelope-wrapper {
     cursor: pointer;
     position: relative;
     animation: float 3s ease-in-out infinite;
-    transition: all 0.5s ease-in-out;
 }
 
 .envelope {
@@ -39,8 +55,6 @@ body {
     border-left: 140px solid transparent;
     border-right: 140px solid transparent;
     border-top: 100px solid #ff85a1;
-    transform-origin: top;
-    border-radius: 10px 10px 0 0;
 }
 
 .pocket {
@@ -73,57 +87,61 @@ body {
     font-size: 1.1rem;
 }
 
-/* --- Main Card Styles --- */
-.container {
-    width: 100%;
-    max-width: 450px;
-    padding: 20px;
-    transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
+/* --- Card Base UI --- */
 .card {
-    background: rgba(255, 255, 255, 0.95);
-    padding: 40px 30px;
+    background: rgba(255, 255, 255, 0.96);
+    padding: 45px 30px;
     border-radius: 24px;
     box-shadow: 0 15px 35px rgba(255, 117, 143, 0.2);
     text-align: center;
-    position: relative;
+    width: 100%;
     border: 2px solid #ffb3c6;
     backdrop-filter: blur(5px);
+    animation: slideUp 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 
-.emoji-section {
-    font-size: 4.5rem;
-    margin-bottom: 15px;
-    animation: float 3s ease-in-out infinite;
-}
-
-h1 {
-    font-family: 'Caveat', cursive;
+.floating-sorry {
+    font-size: 2.8rem;
+    font-weight: 700;
     color: #ff4d6d;
-    font-size: 3rem;
-    margin-bottom: 15px;
+    letter-spacing: 4px;
+    margin-bottom: 20px;
+    animation: float 2.5s ease-in-out infinite;
+}
+
+.font-caveat {
+    font-family: 'Caveat', cursive;
+    font-size: 2.2rem !important;
+    line-height: 1.4 !important;
 }
 
 .message {
     color: #4a4a4a;
-    font-size: 1.05rem;
+    font-size: 1.1rem;
     line-height: 1.7;
-    margin-bottom: 30px;
+    margin-bottom: 35px;
 }
 
+.emoji-section {
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
+
+/* --- Button Systems Layout (Fixed overlapping) --- */
 .btn-group {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
+    gap: 25px;
     height: 60px;
     position: relative;
+    width: 100%;
 }
 
 button {
     font-family: 'Poppins', sans-serif;
-    padding: 12px 28px;
-    font-size: 1rem;
+    padding: 12px 30px;
+    font-size: 1.05rem;
     font-weight: 600;
     border: none;
     border-radius: 50px;
@@ -131,80 +149,76 @@ button {
     transition: all 0.2s ease-in-out;
 }
 
-#acceptBtn {
+.acceptBtn {
     background-color: #ff4d6d;
     color: white;
-    box-shadow: 0 8px 20px rgba(255, 77, 109, 0.35);
+    box-shadow: 0 8px 20px rgba(255, 77, 109, 0.3);
 }
 
-#acceptBtn:hover {
+.acceptBtn:hover {
     background-color: #ff758f;
     transform: scale(1.05);
 }
 
-#noBtn {
+.noBtn {
     background-color: #6c757d;
     color: white;
-    position: absolute;
-    right: 25px;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* --- Visibility Class Helpers --- */
-.hidden {
-    display: none;
-    opacity: 0;
-    transform: translateY(100px);
+/* --- Final Screen Special UI --- */
+.final-card {
+    border: 3px dashed #ff4d6d;
+    background: #fff0f3;
 }
 
-.slide-up {
-    display: block !important;
-    animation: slideUpAnim 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-}
-
-.fade-out {
-    opacity: 0;
-    transform: scale(0.5);
-    pointer-events: none;
-    position: absolute;
-}
-
-.hidden-final {
-    display: none;
-    margin-top: 25px;
-    animation: fadeIn 0.8s ease-in-out forwards;
-}
-
-.hidden-final h2 {
+.final-title {
     font-family: 'Caveat', cursive;
     color: #ff1493;
-    font-size: 2.5rem;
-    line-height: 1.3;
+    font-size: 2.6rem;
+    margin-bottom: 10px;
+}
+
+.final-msg {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #ff4d6d;
+    margin-bottom: 15px;
+}
+
+.sub-msg {
+    font-size: 1rem;
+    color: #6a6a6a;
+    font-style: italic;
+    background: white;
+    padding: 10px;
+    border-radius: 12px;
+    border: 1px solid #ffccd5;
 }
 
 .hearts {
     font-size: 2.5rem;
-    margin-top: 10px;
+    margin-top: 15px;
     animation: heartbeat 1.2s infinite;
 }
 
-/* --- Core Keyframe Animations --- */
+/* --- Animations Engine --- */
 @keyframes float {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-12px); }
+    50% { transform: translateY(-10px); }
 }
 
 @keyframes heartbeat {
     0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.2); }
+    50% { transform: scale(1.15); }
 }
 
-@keyframes slideUpAnim {
-    from { opacity: 0; transform: translateY(150px) scale(0.9); }
-    to { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(15px); }
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(50px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
+.animate-pulse {
+    animation: heartbeat 1.5s infinite;
+}
