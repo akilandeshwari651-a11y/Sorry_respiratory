@@ -1,0 +1,74 @@
+body{
+    margin:0;
+    font-family: Arial;
+    background: linear-gradient(120deg,#ffcccc,#ffe6e6,#fff);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.card{
+    background:white;
+    padding:30px;
+    width:70%;
+    max-width:500px;
+    text-align:center;
+    border-radius:20px;
+    box-shadow:0 0 20px gray;
+    animation: fadeIn 2s ease-in-out;
+}
+
+.profile{
+    width:140px;
+    height:140px;
+    border-radius:50%;
+    object-fit:cover;
+    border:4px solid red;
+    margin-top:-80px;
+}
+
+h1{
+    color:red;
+}
+
+p{
+    font-size:18px;
+    color:#333;
+    line-height:1.6;
+}
+
+button{
+    margin-top:15px;
+    padding:10px 20px;
+    border:none;
+    background:red;
+    color:white;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:darkred;
+}
+
+/* fade animation */
+@keyframes fadeIn{
+    from{opacity:0; transform:scale(0.8);}
+    to{opacity:1; transform:scale(1);}
+}
+
+/* floating hearts */
+body::before{
+    content:"💔 💖 💔 💖 💔";
+    position:absolute;
+    top:0;
+    width:100%;
+    font-size:30px;
+    animation: float 6s linear infinite;
+}
+
+@keyframes float{
+    0%{transform:translateY(-50px);}
+    100%{transform:translateY(100vh);}
+}
