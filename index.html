@@ -148,26 +148,29 @@
   .letter-content {
     padding: 15px 20px;
     height: 100%;
-    overflow: hidden;
     position: relative;
+    overflow: hidden;
   }
 
   .page {
     position: absolute;
     width: calc(100% - 40px);
-    height: calc(100% - 40px);
+    height: calc(100% - 50px);
     opacity: 0;
-    transition: opacity 0.4s ease;
-    pointer-events: none;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
     color: #444;
     font-size: 14px;
     line-height: 1.6;
     text-align: left;
+    top: 0;
+    left: 20px;
   }
 
   .page.active {
     opacity: 1;
-    pointer-events: all;
+    visibility: visible;
+    z-index: 1;
   }
 
   .page h2 {
@@ -190,4 +193,16 @@
     border-radius: 12px;
     object-fit: cover;
     border: 3px solid #ffb3d9;
-    box-shadow: 0 5px 15px
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+
+  .whatsapp-btn {
+    display: inline-block;
+    background: #25d366;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: 10px;
+    transition: transform 0.2s ease;
