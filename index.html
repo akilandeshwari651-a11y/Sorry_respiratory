@@ -1,32 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>I'm Sorry</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorry Ammu... 🥺❤️</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="container">
+        <div class="card">
+            <div class="emoji-section">
+                <span id="emoji">🥺</span>
+            </div>
+            
+            <h1>Sorry Ammu... ❤️</h1>
+            
+            <p class="message">
+                Sorry paapu, enakku puriyuthu na romba thappu panniten nu. Un kitta pesaama irundha enakkum romba valikkuthu di. En mela kobam kuraichuttu, oru chinnathana manippu kuduthuruyaa? Unna hurt pannanum-nu na nenaikala ma. Please... enna manichududa! 🥺✨
+            </p>
 
-<div class="card">
+            <div class="btn-group">
+                <button id="acceptBtn" onclick="accepted()">Manippaya? (Yes)</button>
+                <button id="noBtn" onmouseover="moveButton()">No 😡</button>
+            </div>
 
-    <img src="image.jpg" class="profile">
+            <!-- Success Hidden Message -->
+            <div id="successMessage" class="hidden">
+                <h2>I knew you would forgive me! Love you so much Ammu! 🥰💖</h2>
+                <div class="hearts">❤️❤️❤️</div>
+            </div>
+        </div>
+    </div>
 
-    <h1>💔 <span id="typing"></span></h1>
+    <!-- Background Music Link (Change inside the src if you have another favorite track) -->
+    <audio id="bgMusic" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
 
-    <p>
-        I know I made a mistake.<br>
-        I never wanted to hurt you.<br>
-        Please forgive me if you can.<br>
-        You mean a lot to me ❤️
-    </p>
-
-    <h3>— From Me</h3>
-
-    <button onclick="playMusic()">▶ Play Music</button>
-
-</div>
-
-<audio id="music" src="song.mp3"></audio>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
-</html>
+                    </html>
+                    
