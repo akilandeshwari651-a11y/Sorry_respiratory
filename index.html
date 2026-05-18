@@ -5,98 +5,37 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For Ammu</title>
 <style>
-  body {
-    background: #ffc9e3;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: Arial, sans-serif;
-    margin: 0;
-  }
-
-  .envelope {
-    width: 280px;
-    height: 180px;
-    background: #ffb3d9;
-    border-radius: 10px;
-    position: relative;
-    cursor: pointer;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-  }
-
-  .envelope-flap {
-    width: 0; 
-    height: 0;
-    border-left: 140px solid transparent;
-    border-right: 140px solid transparent;
-    border-bottom: 90px solid #ff80bf;
-    position: absolute; 
-    top: 0; 
-    left: 0;
-    border-radius: 10px 10px 0 0;
-    transform-origin: top;
-    transition: transform 0.8s ease;
-    z-index: 10;
-  }
-
-  .envelope.open .envelope-flap { 
-    transform: rotateX(180deg); 
-  }
-
-  .heart {
-    width: 30px; 
-    height: 30px; 
-    background: #ff3366;
-    position: absolute; 
-    top: 50%; 
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(45deg);
-    z-index: 11; 
-  }
-
-  .heart:before, .heart:after {
-    content: ''; 
-    width: 30px; 
-    height: 30px;
-    background: #ff3366; 
-    border-radius: 50%; 
-    position: absolute;
-  }
-  .heart:before { top: -15px; left: 0; }
-  .heart:after { left: -15px; top: 0; }
-  .envelope.open .heart { opacity: 0; }
-
-  .sorry {
-    position: absolute; 
-    top: 50%; 
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 40px; 
-    font-weight: bold; 
-    color: #e63976;
-    opacity: 0; 
-    z-index: 20; 
-    pointer-events: none;
-  }
-
-  .envelope.open .sorry { 
-    animation: float 3s ease forwards; 
-  }
-
-  @keyframes float {
-    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
-    30% { opacity: 1; transform: translate(-50%, -200%) scale(1.2); }
-    100% { opacity: 0; transform: translate(-50%, -350%) scale(0.8); }
-  }
-
-  .letter {
-    width: 250px; 
-    height: 0; 
-    background: #fff;
-    position: absolute; 
-    top: 15px; 
-    left: 15px;
-    border-radius: 8px; 
-    overflow: hidden;
-    transition: height 0.8s ease 0.6s, top 0.
+  body{background:#ffc9e3;height:100vh;display:flex;justify-content:center;align-items:center;font-family:Arial;margin:0}
+  .envelope{width:280px;height:180px;background:#ffb3d9;border-radius:10px;position:relative;cursor:pointer;box-shadow:0 10px 20px rgba(0,0,0,.2)}
+  .envelope-flap{width:0;height:0;border-left:140px solid transparent;border-right:140px solid transparent;border-bottom:90px solid #ff80bf;position:absolute;top:0;left:0;border-radius:10px 10px 0 0;transform-origin:top;transition:transform .8s ease;z-index:10}
+  .envelope.open .envelope-flap{transform:rotateX(180deg)}
+  .heart{width:30px;height:30px;background:#ff3366;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(45deg);z-index:11}
+  .heart:before,.heart:after{content:'';width:30px;height:30px;background:#ff3366;border-radius:50%;position:absolute}
+  .heart:before{top:-15px;left:0}.heart:after{left:-15px;top:0}
+  .envelope.open .heart{opacity:0}
+  .sorry{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:40px;font-weight:bold;color:#e63976;opacity:0;z-index:20;pointer-events:none}
+  .envelope.open .sorry{animation:float 3s ease forwards}
+  @keyframes float{0%{opacity:0;transform:translate(-50%,-50%) scale(.5)}30%{opacity:1;transform:translate(-50%,-200%) scale(1.2)}100%{opacity:0;transform:translate(-50%,-350%) scale(.8)}}
+  .letter{width:250px;height:0;background:#fff;position:absolute;top:15px;left:15px;border-radius:8px;overflow:hidden;transition:height .8s ease .6s,top .8s ease .6s;z-index:5}
+  .envelope.open .letter{height:320px;top:-240px}
+  .letter-content{padding:15px;height:100%}
+  .page{display:none;color:#444;font-size:14px;line-height:1.6}
+  .page.active{display:block}
+  h2{color:#e63976;text-align:center;margin-bottom:10px}
+  .btn{display:inline-block;background:#ff80bf;border:none;color:white;padding:5px 12px;border-radius:15px;cursor:pointer;margin:5px;font-size:12px}
+  .btn:disabled{background:#ccc}
+  .nav{text-align:center;margin-top:10px;display:none}
+  .envelope.open .nav{display:block}
+  .tap{margin-top:20px;color:#e63976;font-size:16px;text-align:center}
+  .envelope.open + .tap{display:none}
+</style>
+</head>
+<body>
+<div>
+  <div class="envelope" id="envelope">
+    <div class="envelope-flap"></div>
+    <div class="heart"></div>
+    <div class="sorry">SORRY 💔</div>
+    <div class="letter">
+      <div class="letter-content">
+        <div class="
