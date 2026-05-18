@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For My Ammu... 🥺❤️</title>
-    <!-- Google Fonts Imports -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
@@ -12,43 +11,49 @@
 </head>
 <body>
 
-    <!-- 1. Interactive Envelope Layer -->
-    <div class="envelope-wrapper" id="envelopeWrapper" onclick="openLetter()">
-        <div class="envelope">
-            <div class="flap"></div>
-            <div class="pocket"></div>
-            <div class="heart-seal">❤️</div>
-            <p class="click-text">Tap to open, Ammu... ✨</p>
+    <div class="step" id="step1">
+        <div class="envelope-wrapper" onclick="goToStep2()">
+            <div class="envelope">
+                <div class="flap"></div>
+                <div class="pocket"></div>
+                <div class="heart-seal">❤️</div>
+                <p class="click-text">Tap to open, Ammu... ✨</p>
+            </div>
         </div>
     </div>
 
-    <!-- 2. Main Letter Card Layer (Initially Hidden) -->
-    <div class="container hidden" id="mainContainer">
+    <div class="step hidden" id="step2">
         <div class="card">
-            <div class="emoji-section">
-                <span id="emoji">🥺</span>
-            </div>
-            
-            <h1>Sorry Ammu... ❤️</h1>
-            
-            <p class="message">
-                Sorry paapu, enakku puriyuthu na romba thappu panniten nu. Un kitta pesaama irundha enakkum romba valikkuthu di. En mela kobam kuraichuttu, oru chinnathana manippu kuduthuruyaa? Unna hurt pannanum-nu na nenaikala ma. Please... enna manichududa! 🥺✨
-            </p>
-
+            <div class="floating-sorry">S O R R Y 🥺</div>
+            <p class="message font-caveat">Unna romba miss pandren di paapu... Neeyum enna miss pandriya? 🥺❤️</p>
             <div class="btn-group">
-                <button id="acceptBtn" onclick="accepted()">Manippaya? (Yes)</button>
-                <button id="noBtn" onmouseover="moveButton()" onclick="moveButton()" ontouchstart="moveButton()">No 😡</button>
-            </div>
-
-            <!-- Success Hidden Message -->
-            <div id="successMessage" class="hidden-final">
-                <h2>I knew you would forgive me! Love you so much Ammu! 🥰💖</h2>
-                <div class="hearts">❤️❤️❤️</div>
+                <button class="acceptBtn" onclick="goToStep3()">Yes 🥰</button>
+                <button class="noBtn" onmouseover="moveButton(this)" onclick="moveButton(this)" ontouchstart="moveButton(this)">No 😡</button>
             </div>
         </div>
     </div>
 
-    <!-- Romantic Background Music Loop -->
+    <div class="step hidden" id="step3">
+        <div class="card">
+            <div class="emoji-section">🥺👉👈</div>
+            <p class="message font-caveat">En kitta pesama irundha enakkum romba valikkuthu ma. Thirumba en kooda eppolum pola pesuvia? Please... ❤️</p>
+            <div class="btn-group">
+                <button class="acceptBtn" onclick="goToStep4()">Yes 🥺</button>
+                <button class="noBtn" onmouseover="moveButton(this)" onclick="moveButton(this)" ontouchstart="moveButton(this)">No 😡</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="step hidden" id="step4">
+        <div class="card final-card">
+            <div class="emoji-section animate-pulse">🥰💖</div>
+            <h1 class="final-title">I knew you would forgive me!</h1>
+            <p class="final-msg">I love you so much, my Ammu paapu! ❤️✨</p>
+            <p class="sub-msg">Ippo chat-la vandhu enakku "Love you" sollu... Waiting! 😘👉👈</p>
+            <div class="hearts">❤️❤️❤️</div>
+        </div>
+    </div>
+
     <audio id="bgMusic" loop>
         <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
     </audio>
