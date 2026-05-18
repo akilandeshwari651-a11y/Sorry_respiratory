@@ -5,22 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For Ammu</title>
 <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
   body {
-    background: linear-gradient(135deg, #ffd6e8, #ffc9e3);
+    background: #ffc9e3;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     font-family: Arial, sans-serif;
-  }
-
-  .container {
-    text-align: center;
-    position: relative;
-    width: 90%;
-    max-width: 380px;
+    margin: 0;
   }
 
   .envelope {
@@ -30,48 +22,81 @@
     border-radius: 10px;
     position: relative;
     cursor: pointer;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-    margin: 0 auto;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
   }
 
   .envelope-flap {
-    width: 0; height: 0;
+    width: 0; 
+    height: 0;
     border-left: 140px solid transparent;
     border-right: 140px solid transparent;
     border-bottom: 90px solid #ff80bf;
-    position: absolute; top: 0; left: 0;
+    position: absolute; 
+    top: 0; 
+    left: 0;
     border-radius: 10px 10px 0 0;
     transform-origin: top;
     transition: transform 0.8s ease;
     z-index: 10;
   }
 
-  .envelope.open .envelope-flap { transform: rotateX(180deg); }
+  .envelope.open .envelope-flap { 
+    transform: rotateX(180deg); 
+  }
 
   .heart {
-    width: 30px; height: 30px; background: #ff3366;
-    position: absolute; top: 50%; left: 50%;
+    width: 30px; 
+    height: 30px; 
+    background: #ff3366;
+    position: absolute; 
+    top: 50%; 
+    left: 50%;
     transform: translate(-50%, -50%) rotate(45deg);
-    z-index: 11; transition: opacity 0.4s ease;
+    z-index: 11; 
   }
 
   .heart:before, .heart:after {
-    content: ''; width: 30px; height: 30px;
-    background: #ff3366; border-radius: 50%; position: absolute;
+    content: ''; 
+    width: 30px; 
+    height: 30px;
+    background: #ff3366; 
+    border-radius: 50%; 
+    position: absolute;
   }
   .heart:before { top: -15px; left: 0; }
   .heart:after { left: -15px; top: 0; }
   .envelope.open .heart { opacity: 0; }
 
-  .floating-sorry {
-    position: absolute; top: 50%; left: 50%;
+  .sorry {
+    position: absolute; 
+    top: 50%; 
+    left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 42px; font-weight: bold; color: #e63976;
-    text-shadow: 0 0 20px rgba(255, 105, 180, 0.8);
-    opacity: 0; z-index: 20; pointer-events: none;
+    font-size: 40px; 
+    font-weight: bold; 
+    color: #e63976;
+    opacity: 0; 
+    z-index: 20; 
+    pointer-events: none;
   }
 
-  .envelope.open .floating-sorry { animation: floatUp 3s ease forwards; }
+  .envelope.open .sorry { 
+    animation: float 3s ease forwards; 
+  }
 
-  @keyframes floatUp {
-    0% { opacity: 0; transform
+  @keyframes float {
+    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+    30% { opacity: 1; transform: translate(-50%, -200%) scale(1.2); }
+    100% { opacity: 0; transform: translate(-50%, -350%) scale(0.8); }
+  }
+
+  .letter {
+    width: 250px; 
+    height: 0; 
+    background: #fff;
+    position: absolute; 
+    top: 15px; 
+    left: 15px;
+    border-radius: 8px; 
+    overflow: hidden;
+    transition: height 0.8s ease 0.6s, top 0.
