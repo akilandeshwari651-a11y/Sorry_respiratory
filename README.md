@@ -1,2 +1,16 @@
-# Sorry_respiratory
-A small heartfelt apology project made with HTML, CSS, and JavaScript. ❤️ This website contains a beautiful animated "I'm Sorry" message with floating hearts and a special button to ask for forgiveness. 🥺💖
+# 💔 Sorry From Me (Advanced Version)
+
+## 🌟 Features
+- Profile photo included
+- Typing animation 💬
+- Floating hearts 💖
+- Background music 🎵
+- Smooth UI design
+
+## 💡 Purpose
+A creative apology website made with HTML, CSS, JS.
+
+## ❤️ Message
+Sometimes words are not enough, so I used code to say sorry.
+
+Made with honesty 🙏
