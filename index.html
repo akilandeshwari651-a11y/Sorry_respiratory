@@ -1,27 +1,360 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ta">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For You</title>
+<title>For Ammu</title>
 <style>
-  body{background:#ffc9e3;height:100vh;display:flex;justify-content:center;align-items:center;font-family:Arial;margin:0}
-  .envelope{width:280px;height:180px;background:#ffb3d9;border-radius:10px;position:relative;cursor:pointer;box-shadow:0 10px 20px rgba(0,0,0,.2)}
-  .envelope-flap{width:0;height:0;border-left:140px solid transparent;border-right:140px solid transparent;border-bottom:90px solid #ff80bf;position:absolute;top:0;left:0;border-radius:10px 10px 0 0;transform-origin:top;transition:transform .8s ease;z-index:10}
-  .envelope.open .envelope-flap{transform:rotateX(180deg)}
-  .heart{width:30px;height:30px;background:#ff3366;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(45deg);z-index:11}
-  .heart:before,.heart:after{content:'';width:30px;height:30px;background:#ff3366;border-radius:50%;position:absolute}
-  .heart:before{top:-15px;left:0}.heart:after{left:-15px;top:0}
-  .envelope.open .heart{opacity:0}
-  .sorry{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:40px;font-weight:bold;color:#e63976;opacity:0;z-index:20;pointer-events:none}
-  .envelope.open .sorry{animation:float 3s ease forwards}
-  @keyframes float{0%{opacity:0;transform:translate(-50%,-50%) scale(.5)}30%{opacity:1;transform:translate(-50%,-200%) scale(1.2)}100%{opacity:0;transform:translate(-50%,-350%) scale(.8)}}
-  .letter{width:250px;height:0;background:#fff;position:absolute;top:15px;left:15px;border-radius:8px;overflow:hidden;transition:height .8s ease .6s,top .8s ease .6s;z-index:5}
-  .envelope.open .letter{height:320px;top:-240px}
-  .letter-content{padding:15px;height:100%}
-  .page{display:none;color:#444;font-size:14px;line-height:1.6}
-  .page.active{display:block}
-  h2{color:#e63976;text-align:center;margin-bottom:10px}
-  .btn{display:inline-block;background:#ff80bf;border:none;color:white;padding:5px 12px;border-radius:15px;cursor:pointer;margin:5px;font-size:12px}
-  .btn:disabled{background:#ccc}
-  .nav{text-align:center;margin-top:
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background: linear-gradient(135deg, #ffd6e8, #ffc9e3);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+  }
+
+  .container {
+    text-align: center;
+    position: relative;
+    width: 90%;
+    max-width: 400px;
+  }
+
+  .envelope {
+    width: 280px;
+    height: 180px;
+    background: #ffb3d9;
+    border-radius: 10px;
+    position: relative;
+    cursor: pointer;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease;
+    margin: 0 auto;
+  }
+
+  .envelope:hover {
+    transform: scale(1.05);
+  }
+
+  .envelope-flap {
+    width: 0;
+    height: 0;
+    border-left: 140px solid transparent;
+    border-right: 140px solid transparent;
+    border-bottom: 90px solid #ff80bf;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 10px 10px 0 0;
+    transform-origin: top;
+    transition: transform 0.8s ease;
+    z-index: 3;
+  }
+
+  .envelope.open .envelope-flap {
+    transform: rotateX(180deg);
+  }
+
+  .heart {
+    width: 30px;
+    height: 30px;
+    background: #ff3366;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    z-index: 4;
+    transition: opacity 0.4s ease;
+  }
+
+  .heart:before,
+  .heart:after {
+    content: '';
+    width: 30px;
+    height: 30px;
+    background: #ff3366;
+    border-radius: 50%;
+    position: absolute;
+  }
+
+  .heart:before {
+    top: -15px;
+    left: 0;
+  }
+
+  .heart:after {
+    left: -15px;
+    top: 0;
+  }
+
+  .envelope.open .heart {
+    opacity: 0;
+  }
+
+  .letter {
+    width: 260px;
+    height: 0;
+    background: #fff;
+    position: absolute;
+    top: 15px;
+    left: 10px;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    z-index: 2;
+    overflow: hidden;
+    transition: height 0.8s ease 0.4s, top 0.8s ease 0.4s;
+  }
+
+  .envelope.open .letter {
+    height: 340px;
+    top: -240px;
+  }
+
+  .letter-content {
+    padding: 20px;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .page {
+    position: absolute;
+    width: calc(100% - 40px);
+    height: calc(100% - 40px);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    color: #444;
+    font-size: 15px;
+    line-height: 1.7;
+    text-align: left;
+  }
+
+  .page.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .page h2 {
+    color: #e63976;
+    font-size: 22px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .whatsapp-btn {
+    display: inline-block;
+    background: #25d366;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: 15px;
+    transition: transform 0.2s ease;
+  }
+
+  .whatsapp-btn:hover {
+    transform: scale(1.05);
+  }
+
+  .page-nav {
+    position: absolute;
+    bottom: 15px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    opacity: 0;
+    transition: opacity 0.5s ease 1.2s;
+  }
+
+  .envelope.open .page-nav {
+    opacity: 1;
+  }
+
+  .page-nav button {
+    background: #ff80bf;
+    border: none;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  .page-nav button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+  }
+
+  .page-indicator {
+    color: #e63976;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+  }
+
+  .tap-text {
+    margin-top: 25px;
+    color: #e63976;
+    font-size: 18px;
+    font-weight: 600;
+    animation: pulse 1.5s infinite;
+  }
+
+  .envelope.open + .tap-text {
+    opacity: 0;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+  }
+
+  .sparkle {
+    position: absolute;
+    color: #ffeb3b;
+    font-size: 20px;
+    animation: sparkle 2s infinite;
+  }
+
+  @keyframes sparkle {
+    0%, 100% { opacity: 0; transform: scale(0); }
+    50% { opacity: 1; transform: scale(1); }
+  }
+
+  .music-note {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 24px;
+    color: #e63976;
+    cursor: pointer;
+    z-index: 5;
+    opacity: 0;
+    transition: opacity 0.5s ease 1.2s;
+  }
+
+  .envelope.open .music-note {
+    opacity: 1;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="envelope" id="envelope">
+    <div class="envelope-flap"></div>
+    <div class="heart"></div>
+    <div class="music-note" id="musicToggle">🎵</div>
+    <div class="letter">
+      <div class="letter-content" id="letterContent">
+        <div class="page active">
+          <h2>Sorry Ammu 💌</h2>
+          <p>Sorry ku aprm ah unna miss pandren.</p>
+        </div>
+        <div class="page">
+          <p>Naa pannathu thappu than.</p>
+        </div>
+        <div class="page">
+          <p>Maichuta.</p>
+        </div>
+        <div class="page">
+          <p>Nexty paaru.</p>
+        </div>
+        <div class="page">
+          <p>Oru 7 page nu ipdi soluu.</p>
+        </div>
+        <div class="page">
+          <p>Aprm ahh vanthu nee enaku.</p>
+        </div>
+        <div class="page">
+          <p>Nee ipo enta pesuvana? Love you ❤️</p>
+          <a href="https://wa.me/?text=Love%20you%20💕" class="whatsapp-btn" target="_blank">Anupu WhatsApp la</a>
+        </div>
+      </div>
+      <div class="page-nav">
+        <button id="prevBtn" onclick="prevPage()" disabled>Back</button>
+        <span class="page-indicator" id="pageIndicator">1 / 7</span>
+        <button id="nextBtn" onclick="nextPage()">Next</button>
+      </div>
+    </div>
+  </div>
+  <div class="tap-text">Tap to open, Ammu... ✨</div>
+  <div class="sparkle" style="top: 20%; left: 30%;">✨</div>
+  <div class="sparkle" style="top: 70%; right: 25%; animation-delay: 1s;">✨</div>
+</div>
+
+<audio id="bgMusic" loop>
+  <source src="https://cdn.pixabay.com/audio/2024/08/02/audio_65b1b4e5a5.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  const envelope = document.getElementById('envelope');
+  const bgMusic = document.getElementById('bgMusic');
+  const musicToggle = document.getElementById('musicToggle');
+  let currentPage = 0;
+  const totalPages = 7;
+  const pages = document.querySelectorAll('.page');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const pageIndicator = document.getElementById('pageIndicator');
+  let isMusicPlaying = false;
+
+  envelope.addEventListener('click', () => {
+    envelope.classList.add('open');
+    if (!isMusicPlaying) {
+      bgMusic.volume = 0.3;
+      bgMusic.play().catch(() => {});
+      isMusicPlaying = true;
+      musicToggle.textContent = '🔊';
+    }
+  });
+
+  musicToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (isMusicPlaying) {
+      bgMusic.pause();
+      musicToggle.textContent = '🎵';
+      isMusicPlaying = false;
+    } else {
+      bgMusic.play().catch(() => {});
+      musicToggle.textContent = '🔊';
+      isMusicPlaying = true;
+    }
+  });
+
+  function updatePage() {
+    pages.forEach((page, index) => {
+      page.classList.toggle('active', index === currentPage);
+    });
+    pageIndicator.textContent = `${currentPage + 1} / ${totalPages}`;
+    prevBtn.disabled = currentPage === 0;
+    nextBtn.disabled = currentPage === totalPages - 1;
+  }
+
+  function nextPage() {
+    if (currentPage < totalPages - 1) {
+      currentPage++;
+      updatePage();
+    }
+  }
+
+  function prevPage() {
+    if (currentPage > 0) {
+      currentPage--;
+      updatePage();
+    }
+  }
+</script>
+</body>
+</html>
