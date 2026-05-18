@@ -11,8 +11,8 @@
 </head>
 <body>
 
-    <div class="step" id="step1">
-        <div class="envelope-wrapper" onclick="goToStep2()">
+    <div class="step" id="step1" style="display: flex; cursor: pointer;" onclick="goToStep2()">
+        <div class="envelope-wrapper">
             <div class="envelope">
                 <div class="flap"></div>
                 <div class="pocket"></div>
@@ -54,7 +54,7 @@
         </div>
     </div>
 
-    <audio id="bgMusic" loop>
+    <audio id="bgMusic" loop preload="auto">
         <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
     </audio>
 
