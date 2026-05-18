@@ -25,20 +25,13 @@
             overflow: hidden;
         }
 
-        /* --- Multi-step control --- */
-        .step {
+        .container {
             width: 100%;
             max-width: 420px;
             padding: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
-            transition: all 0.4s ease-in-out;
-        }
-
-        .hidden {
-            display: none !important;
-            opacity: 0;
         }
 
         /* --- Envelope Framework --- */
@@ -46,6 +39,7 @@
             cursor: pointer;
             position: relative;
             animation: float 3s ease-in-out infinite;
+            display: block; /* Direct visual anchor */
         }
 
         .envelope {
@@ -89,7 +83,7 @@
 
         .click-text {
             position: absolute;
-            bottom: -40px;
+            bottom: -45px;
             width: 100%;
             text-align: center;
             font-weight: 600;
@@ -107,7 +101,7 @@
             width: 100%;
             border: 2px solid #ffb3c6;
             backdrop-filter: blur(5px);
-            animation: slideUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            animation: slideUp 0.4s ease-out forwards;
         }
 
         .floating-sorry {
@@ -137,7 +131,7 @@
             margin-bottom: 20px;
         }
 
-        /* --- Button Systems Layout (Fixed overlapping) --- */
+        /* --- Button Systems Layout --- */
         .btn-group {
             display: flex;
             justify-content: center;
@@ -225,15 +219,16 @@
         }
 
         @keyframes slideUp {
-            from { opacity: 0; transform: translateY(40px); }
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
 
-    <div class="step" id="step1" onclick="goToStep2()">
-        <div class="envelope-wrapper">
+    <div class="container" id="displayBox">
+        
+        <div class="envelope-wrapper" id="envelopeActive" onclick="triggerStep2(event)">
             <div class="envelope">
                 <div class="flap"></div>
                 <div class="pocket"></div>
@@ -241,38 +236,7 @@
                 <p class="click-text">Tap to open, Ammu... ✨</p>
             </div>
         </div>
-    </div>
 
-    <div class="step hidden" id="step2">
-        <div class="card">
-            <div class="floating-sorry">S O R R Y 🥺</div>
-            <p class="message font-caveat">Unna romba miss pandren di paapu... Neeyum enna miss pandriya? 🥺❤️</p>
-            <div class="btn-group">
-                <button class="acceptBtn" onclick="goToStep3(event)">Yes 🥰</button>
-                <button class="noBtn" onmouseover="moveButton(this)" onclick="moveButton(this)" ontouchstart="moveButton(this)">No 😡</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="step hidden" id="step3">
-        <div class="card">
-            <div class="emoji-section">🥺👉👈</div>
-            <p class="message font-caveat">En kitta pesama irundha enakkum romba valikkuthu ma. Thirumba en kooda eppolum pola pesuvia? Please... ❤️</p>
-            <div class="btn-group">
-                <button class="acceptBtn" onclick="goToStep4(event)">Yes 🥺</button>
-                <button class="noBtn" onmouseover="moveButton(this)" onclick="moveButton(this)" ontouchstart="moveButton(this)">No 😡</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="step hidden" id="step4">
-        <div class="card final-card">
-            <div class="emoji-section" style="animation: heartbeat 1.5s infinite;">🥰💖</div>
-            <h1 class="final-title">I knew you would forgive me!</h1>
-            <p class="final-msg">I love you so much, my Ammu paapu! ❤️✨</p>
-            <p class="sub-msg">Ippo chat-la vandhu enakku "Love you" sollu... Waiting! 😘👉👈</p>
-            <div class="hearts">❤️❤️❤️</div>
-        </div>
     </div>
 
     <audio id="bgMusic" loop preload="auto">
@@ -280,35 +244,65 @@
     </audio>
 
     <script>
-        // Step 1 to Step 2 Transition
-        function goToStep2() {
-            document.getElementById('step1').classList.add('hidden');
-            document.getElementById('step2').classList.remove('hidden');
+        // Core Logic Container variables
+        const displayBox = document.getElementById('displayBox');
+        const music = document.getElementById('bgMusic');
+
+        // Dynamic HTML segments for bulletproof page rendering
+        const step2Content = `
+            <div class="card">
+                <div class="floating-sorry">S O R R Y 🥺</div>
+                <p class="message font-caveat">Unna romba miss pandren di paapu... Neeyum enna miss pandriya? 🥺❤️</p>
+                <div class="btn-group">
+                    <button class="acceptBtn" onclick="triggerStep3(event)">Yes 🥰</button>
+                    <button class="noBtn" onmouseover="moveButton(this)" onclick="moveButton(this)" ontouchstart="moveButton(this)">No 😡</button>
+                </div>
+            </div>`;
+
+        const step3Content = `
+            <div class="card">
+                <div class="emoji-section">🥺👉👈</div>
+                <p class="message font-caveat">En kitta pesama irundha enakkum romba valikkuthu ma. Thirumba en kooda eppolum pola pesuvia? Please... ❤️</p>
+                <div class="btn-group">
+                    <button class="acceptBtn" onclick="triggerStep4(event)">Yes 🥺</button>
+                    <button class="noBtn" onmouseover="moveButton(this)" onclick="moveButton(this)" ontouchstart="moveButton(this)">No 😡</button>
+                </div>
+            </div>`;
+
+        const step4Content = `
+            <div class="card final-card">
+                <div class="emoji-section" style="animation: heartbeat 1.5s infinite;">🥰💖</div>
+                <h1 class="final-title">I knew you would forgive me!</h1>
+                <p class="final-msg">I love you so much, my Ammu paapu! ❤️✨</p>
+                <p class="sub-msg">Ippo chat-la vandhu enakku "Love you" sollu... Waiting! 😘👉👈</p>
+                <div class="hearts">❤️❤️❤️</div>
+            </div>`;
+
+        // Execution Logic functions
+        function triggerStep2(event) {
+            if(event) event.preventDefault();
             
-            // Audio Trigger Framework
-            const music = document.getElementById('bgMusic');
+            // Audio execution check
             music.volume = 0.4;
             music.play().catch(e => console.log("Audio cached natively"));
+
+            // Inject contents forcefully
+            displayBox.innerHTML = step2Content;
         }
 
-        // Step 2 to Step 3 Transition
-        function goToStep3(event) {
-            event.stopPropagation(); // Event bubbling lock trigger
-            document.getElementById('step2').classList.add('hidden');
-            document.getElementById('step3').classList.remove('hidden');
+        function triggerStep3(event) {
+            if(event) event.stopPropagation();
+            displayBox.innerHTML = step3Content;
         }
 
-        // Step 3 to Step 4 Transition
-        function goToStep4(event) {
-            event.stopPropagation();
-            document.getElementById('step3').classList.add('hidden');
-            document.getElementById('step4').classList.remove('hidden');
+        function triggerStep4(event) {
+            if(event) event.stopPropagation();
+            displayBox.innerHTML = step4Content;
             
-            const music = document.getElementById('bgMusic');
             music.volume = 0.6;
         }
 
-        // Fixed absolute positioning for random button loops
+        // Fixed anti-click algorithm parameters
         function moveButton(btnElement) {
             const padding = 35;
             const maxX = window.innerWidth - btnElement.offsetWidth - padding;
