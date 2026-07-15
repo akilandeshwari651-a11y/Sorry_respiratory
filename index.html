@@ -16,29 +16,29 @@ box-sizing:border-box;
 
 body{
 font-family:'Poppins',sans-serif;
-background:#0a0a0a;
+background:linear-gradient(180deg, #1e3c72 0%, #2a5298 100%); /* dark blue bg */
+min-height:100vh;
 overflow:hidden;
 }
 
 .cloud{
 position:absolute;
-background:rgba(255,255,255,0.8);
+background:rgba(255,255,255,0.9);
 border-radius:50px;
-opacity:0.7;
-animation:floatCloud 40s linear infinite;
+opacity:0.9;
+animation:floatCloud 30s linear infinite;
 display:flex;
 align-items:center;
 justify-content:center;
-padding:8px 18px;
+padding:10px 20px;
 z-index:20;
 pointer-events:none;
-backdrop-filter:blur(5px);
 }
 
 .cloud:before,.cloud:after{
 content:'';
 position:absolute;
-background:rgba(255,255,255,0.8);
+background:rgba(255,255,255,0.9);
 border-radius:50%;
 }
 
@@ -49,15 +49,15 @@ border-radius:50%;
 position:relative;
 z-index:21;
 font-family:'Quicksand',sans-serif;
-font-size:10px;
+font-size:11px;
 font-weight:700;
 color:#0984e3;
 white-space:nowrap;
 }
 
 @keyframes floatCloud{
-0%{transform:translateX(-250px);}
-100%{transform:translateX(calc(100vw + 250px));}
+0%{transform:translateX(-200px);}
+100%{transform:translateX(calc(100vw + 200px));}
 }
 
 .slider{
@@ -81,8 +81,8 @@ opacity:1;
 .slide-img{
 width:100%;
 height:100%;
-object-fit:cover; /* full screen photo */
-filter:brightness(0.7);
+object-fit:cover;
+filter:brightness(0.75);
 }
 
 .glass-msg{
@@ -97,13 +97,6 @@ backdrop-filter:blur(20px);
 border-radius:20px;
 padding:20px;
 border:1px solid rgba(255,255,255,0.3);
-box-shadow:0 8px 32px rgba(0,0,0,0.3);
-animation:slideUp 1.5s ease;
-}
-
-@keyframes slideUp{
-from{opacity:0; transform:translateX(-50%) translateY(50px);}
-to{opacity:1; transform:translateX(-50%) translateY(0);}
 }
 
 .glass-msg p{
@@ -125,12 +118,6 @@ font-size:48px;
 color:white;
 z-index:15;
 text-shadow:0 4px 20px rgba(0,0,0,0.7);
-animation:glow 3s ease-in-out infinite alternate;
-}
-
-@keyframes glow{
-from{text-shadow:0 4px 20px rgba(255,255,255,0.5);}
-to{text-shadow:0 4px 30px rgba(116,185,255,1);}
 }
 
 #startBtn{
@@ -149,63 +136,6 @@ font-weight:600;
 cursor:pointer;
 z-index:25;
 border:2px solid rgba(255,255,255,0.4);
-transition:0.4s;
-}
-
-#startBtn:hover{
-background:rgba(255,255,255,0.3);
-transform:translate(-50%,-50%) scale(1.1);
-}
-
-#finalMsg{
-position:absolute;
-bottom:120px;
-left:50%;
-transform:translateX(-50%);
-display:none;
-text-align:center;
-z-index:15;
-}
-
-#finalMsg p{
-font-family:'Dancing Script',cursive;
-font-size:28px;
-color:white;
-text-shadow:0 2px 15px rgba(0,0,0,0.7);
-margin-bottom:20px;
-}
-
-#btnGroup{
-display:none;
-}
-
-#btnGroup button{
-padding:14px 30px;
-margin:8px;
-border:none;
-border-radius:50px;
-background:rgba(255,255,255,0.25);
-backdrop-filter:blur(15px);
-color:white;
-font-size:16px;
-font-weight:600;
-cursor:pointer;
-border:1px solid rgba(255,255,255,0.4);
-}
-
-.heart{
-position:absolute;
-font-size:20px;
-animation:floatHeart 8s ease-in infinite;
-color:rgba(255,255,255,0.8);
-z-index:10;
-}
-
-@keyframes floatHeart{
-0%{transform:translateY(100vh) rotate(0deg); opacity:0;}
-10%{opacity:1;}
-90%{opacity:1;}
-100%{transform:translateY(-100vh) rotate(720deg); opacity:0;}
 }
 </style>
 </head>
@@ -215,11 +145,11 @@ z-index:10;
   <div class="cloud-text">KD ACTING GUNDU</div>
 </div>
 
-<div class="cloud" style="width:180px; height:55px; top:22%; animation-delay:12s;">
+<div class="cloud" style="width:180px; height:55px; top:22%; animation-delay:10s;">
   <div class="cloud-text">SORRY ARTHI</div>
 </div>
 
-<div class="cloud" style="width:170px; height:50px; top:38%; animation-delay:24s;">
+<div class="cloud" style="width:170px; height:50px; top:38%; animation-delay:20s;">
   <div class="cloud-text">PLEASE FORGIVE</div>
 </div>
 
@@ -229,15 +159,51 @@ z-index:10;
 
 <div class="slider" id="slider"></div>
 
-<div id="finalMsg">
-  <p>I really messed up... Please forgive me ❤️</p>
-  <div id="btnGroup">
-    <button onclick="alert('Thank you ❤️')">I Forgive You</button>
-    <button onclick="alert('I\'m waiting 🙏')">Can We Talk?</button>
-  </div>
-</div>
-
 <script>
+// TEMP: Testing ku photo illana ipdi irukum
 const slides = [
   {img:"IMG-20240720-WA0034.jpg", text:"I'm truly sorry... I never meant to hurt you like this"},
-  {img:"IMG-20250126
+  {img:"IMG-20250126-WA0053.jpg", text:"That day I acted stupid. I regret every second of it"},
+  {img:"IMG-20251112-WA0023.jpg", text:"Embarrassing you in front of everyone was my biggest mistake"},
+  {img:"IMG-20251224-WA0021.jpg", text:"I can't sleep thinking about what I did to you"},
+  {img:"IMG-20251224-WA0025.jpg", text:"We had so many beautiful memories. I don't want to lose them"},
+  {img:"image.jpg", text:"I know I don't deserve it... but please give me one chance to fix this"}
+];
+
+let currentSlide = 0;
+let started = false;
+let slideInterval;
+
+const slider = document.getElementById('slider');
+slides.forEach((slide, index) => {
+  let div = document.createElement('div');
+  div.className = 'slide';
+  div.innerHTML = `
+    <img src="${slide.img}" class="slide-img">
+    <div class="glass-msg">
+      <p>${slide.text}</p>
+    </div>
+  `;
+  if(index === 0) div.classList.add('active');
+  slider.appendChild(div);
+});
+
+document.getElementById('startBtn').addEventListener('click', startSorry);
+
+function startSorry(){
+  if(started) return;
+  started = true;
+  document.getElementById('startBtn').style.display = 'none';
+  slideInterval = setInterval(nextSlide, 5500);
+}
+
+function nextSlide(){
+  const slideBoxes = document.querySelectorAll('.slide');
+  slideBoxes[currentSlide].classList.remove('active');
+  currentSlide = (currentSlide + 1) % slideBoxes.length;
+  slideBoxes[currentSlide].classList.add('active');
+}
+</script>
+
+</body>
+</html>
