@@ -1,13 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ta">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sorry Arthi 💙</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Noto+Sans+Tamil:wght@400;500;600&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
 
 <style>
 *{
@@ -17,52 +15,91 @@ box-sizing:border-box;
 }
 
 body{
-font-family:'Poppins',sans-serif;
-background:linear-gradient(180deg, #87CEEB 0%, #B0E0E6 50%, #E0F6FF 100%);
+font-family:'Noto Sans Tamil','Poppins',sans-serif;
+background:linear-gradient(180deg, #87CEEB 0%, #B0E0E6 100%);
 min-height:100vh;
 display:flex;
 justify-content:center;
+align-items:flex-start;
+padding:15px 20px;
+overflow-x:hidden;
+position:relative;
+}
+
+.cloud{
+position:absolute;
+background:white;
+border-radius:50px;
+opacity:0.9;
+animation:floatCloud 40s linear infinite;
+display:flex;
 align-items:center;
-padding:20px;
-overflow:hidden;
+justify-content:center;
+padding:10px 20px;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+z-index:0;
+}
+
+.cloud:before,.cloud:after{
+content:'';
+position:absolute;
+background:white;
+border-radius:50%;
+}
+
+.cloud:before{
+width:50px;
+height:50px;
+top:-15px;
+left:15px;
+}
+.cloud:after{
+width:60px;
+height:60px;
+top:-20px;
+right:15px;
+}
+
+.cloud-text{
+position:relative;
+z-index:2;
+font-family:'Quicksand',sans-serif;
+font-size:12px;
+font-weight:700;
+color:#0984e3;
+white-space:nowrap;
+}
+
+@keyframes floatCloud{
+0%{transform:translateX(-300px);}
+100%{transform:translateX(100vw);}
 }
 
 .card{
 width:100%;
-max-width:430px;
-background:rgba(255,255,255,.25);
+max-width:420px;
+background:rgba(255,255,255,.35);
 backdrop-filter:blur(25px);
-border-radius:35px;
-padding:30px 25px;
+border-radius:25px;
+padding:20px;
+margin-top:10px;
 text-align:center;
-box-shadow:0 20px 60px rgba(135,206,235,.5);
+box-shadow:0 15px 40px rgba(135,206,235,.4);
 border:2px solid rgba(255,255,255,.4);
-animation:cardFloat 5s ease-in-out infinite;
-}
-
-@keyframes cardFloat{
-0%,100%{transform:translateY(0);}
-50%{transform:translateY(-8px);}
+z-index:10;
 }
 
 h1{
 font-family:'Dancing Script',cursive;
-font-size:52px;
+font-size:44px;
 color:#0984e3;
-margin-bottom:15px;
-text-shadow:0 0 20px rgba(116,185,255,.6);
-animation:glow 2.5s ease-in-out infinite alternate;
-}
-
-@keyframes glow{
-from{text-shadow:0 0 10px rgba(116,185,255,.6);}
-to{text-shadow:0 0 30px rgba(116,185,255,1);}
+margin-bottom:12px;
 }
 
 .slide-container{
-width:240px;
-height:320px;
-margin:20px auto;
+width:220px;
+height:300px;
+margin:12px auto;
 position:relative;
 display:none;
 }
@@ -72,8 +109,8 @@ position:absolute;
 width:100%;
 height:100%;
 opacity:0;
-transform:scale(0.8);
-transition: all 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+transform:scale(0.9);
+transition: all 1s ease;
 }
 
 .slide-box.active{
@@ -82,135 +119,109 @@ transform:scale(1);
 }
 
 .slide-img{
-width:240px;
-height:240px;
+width:220px;
+height:220px;
 object-fit:cover;
-border-radius:25px;
-border:5px solid white;
-box-shadow:0 15px 40px rgba(0,105,148,.4);
-animation:imgPulse 3s ease-in-out infinite;
-}
-
-@keyframes imgPulse{
-0%,100%{box-shadow:0 15px 40px rgba(0,105,148,.4);}
-50%{box-shadow:0 20px 50px rgba(116,185,255,.7);}
+border-radius:20px;
+border:4px solid white;
+box-shadow:0 10px 25px rgba(0,105,148,.3);
 }
 
 .slide-text{
-margin-top:15px;
+margin-top:12px;
 color:#2d3436;
 font-size:16px;
 line-height:1.7;
 font-weight:500;
-min-height:60px;
-animation:fadeUp 1s ease;
-}
-
-@keyframes fadeUp{
-from{opacity:0; transform:translateY(20px);}
-to{opacity:1; transform:translateY(0);}
+min-height:50px;
 }
 
 #finalChance{
 display:none;
 font-family:'Dancing Script',cursive;
-font-size:30px;
+font-size:26px;
 color:#0984e3;
-margin:20px 0;
-animation:fadeInPop 1.5s ease;
-}
-
-@keyframes fadeInPop{
-0%{opacity:0; transform:scale(0.5) rotate(-5deg);}
-70%{transform:scale(1.1) rotate(2deg);}
-100%{opacity:1; transform:scale(1) rotate(0);}
+margin:15px 0;
 }
 
 button{
-padding:16px 38px;
+padding:14px 30px;
 border:none;
 border-radius:50px;
 background:linear-gradient(135deg,#74b9ff,#0984e3);
 color:white;
-font-size:17px;
+font-size:16px;
 font-weight:600;
 cursor:pointer;
-margin:10px;
-transition:0.4s;
-box-shadow:0 8px 25px rgba(116,185,255,.5);
-}
-
-button:hover{
-transform:translateY(-5px) scale(1.05);
-box-shadow:0 15px 35px rgba(116,185,255,.7);
+margin:8px;
 }
 
 #btnGroup{
 display:none;
-animation:fadeIn 1s ease;
 }
 
 .heart{
 position:absolute;
-font-size:28px;
-animation:floatHeart 7s ease-in infinite;
-opacity:0;
-color:#74b9ff;
+font-size:22px;
+animation:floatHeart 6s ease-in infinite;
+color:#0984e3;
+z-index:1;
 }
 
 @keyframes floatHeart{
-0%{transform:translateY(100vh) scale(0) rotate(0deg); opacity:1;}
-100%{transform:translateY(-100vh) scale(1.5) rotate(720deg); opacity:0;}
-}
-
-.sparkle{
-position:absolute;
-width:4px;
-height:4px;
-background:white;
-border-radius:50%;
-animation:sparkleAnim 2s infinite;
-}
-
-@keyframes sparkleAnim{
-0%,100%{opacity:0; transform:scale(0);}
-50%{opacity:1; transform:scale(1);}
+0%{transform:translateY(100vh); opacity:1;}
+100%{transform:translateY(-100vh); opacity:0;}
 }
 </style>
 </head>
 <body>
+
+<!-- Clouds with Sorry text only -->
+<div class="cloud" style="width:180px; height:60px; top:8%; animation-delay:0s;">
+  <div class="cloud-text">KD ACTING GUNDU 💙</div>
+</div>
+
+<div class="cloud" style="width:200px; height:65px; top:20%; animation-delay:15s;">
+  <div class="cloud-text">SORRY ARTHI 🙏</div>
+</div>
+
+<div class="cloud" style="width:170px; height:55px; top:35%; animation-delay:30s;">
+  <div class="cloud-text">ORU CHANCE KUDU</div>
+</div>
+
+<div class="cloud" style="width:190px; height:60px; top:50%; animation-delay:5s;">
+  <div class="cloud-text">MANICHUDU PLEASE 😔</div>
+</div>
 
 <div class="card">
 <h1>Sorry Arthi 💙</h1>
 
 <div class="slide-container" id="slider"></div>
 
-<div id="finalChance">Enakku oru chance kudu please 🙏<br>I promise I won't hurt you again ❤️</div>
+<div id="finalChance">எனக்கு ஒரு chance கொடு please 🙏<br>I promise இனிமே hurt பண்ண மாட்டேன் ❤️</div>
 
 <button id="startBtn">Open My Heart</button>
 
 <div id="btnGroup">
-<button onclick="alert('Thank you for giving me a chance ❤️')">I Forgive You</button>
-<button onclick="alert('I\'m waiting for you... Please talk 🙏')">Can We Talk?</button>
+<button onclick="alert('மன்னித்ததற்கு நன்றி ❤️')">I Forgive You</button>
+<button onclick="alert('பேசுவோமா... நான் wait பண்றேன் 🙏')">Can We Talk?</button>
 </div>
 </div>
 
 <script>
-// Photo + Message together
 const slides = [
-  {img:"IMG-20240720-WA0034.jpg", text:"Naa sryy Arthi... neraiya alaga kekuren 😔"},
-  {img:"IMG-20250126-WA0053.jpg", text:"Anaiku naa panna adhu periya thappu"},
-  {img:"IMG-20251112-WA0023.jpg", text:"Unna un frnds munadi asinga paduthiten 💔"},
-  {img:"IMG-20251224-WA0021.jpg", text:"Adha nenaicha enaku azhuga varudhu"},
-  {img:"IMG-20251224-WA0025.jpg", text:"Namma memories ellam romba azhaga iruku"},
-  {img:"image.jpg", text:"Please enna mannichudu. Unna illama naan illa"}
+  {img:"IMG-20240720-WA0034.jpg", text:"நான் sorry அர்தி... நிறைய அழகா கேக்குறேன் 😔"},
+  {img:"IMG-20250126-WA0053.jpg", text:"அன்னைக்கு நான் பண்ணது பெரிய தப்பு"},
+  {img:"IMG-20251112-WA0023.jpg", text:"உன்ன உன் friends முன்னாடி அசிங்க படுத்திட்டேன் 💔"},
+  {img:"IMG-20251224-WA0021.jpg", text:"அத நினைச்சா எனக்கு அழுக வருது"},
+  {img:"IMG-20251224-WA0025.jpg", text:"நம்ம memories எல்லாம் ரொம்ப அழகா இருக்கு"},
+  {img:"image.jpg", text:"Please என்ன மன்னிச்சுடு. உன்ன இல்லாம நான் இல்ல"}
 ];
 
 let currentSlide = 0;
 let started = false;
 let slideInterval;
 
-// Create slides
 const slider = document.getElementById('slider');
 slides.forEach((slide, index) => {
   let div = document.createElement('div');
@@ -223,16 +234,6 @@ slides.forEach((slide, index) => {
   slider.appendChild(div);
 });
 
-// Sparkles
-for(let i=0; i<20; i++){
-  let spark = document.createElement('div');
-  spark.className = 'sparkle';
-  spark.style.left = Math.random() * 100 + '%';
-  spark.style.top = Math.random() * 100 + '%';
-  spark.style.animationDelay = Math.random() * 2 + 's';
-  document.querySelector('.card').appendChild(spark);
-}
-
 document.getElementById('startBtn').addEventListener('click', startSorry);
 
 function startSorry(){
@@ -244,8 +245,8 @@ function startSorry(){
 
   slideInterval = setInterval(nextSlide, 4500);
 
-  for(let j=0; j<40; j++){
-    setTimeout(createHeart, j * 250);
+  for(let j=0; j<30; j++){
+    setTimeout(createHeart, j * 300);
   }
 }
 
@@ -255,7 +256,6 @@ function nextSlide(){
   currentSlide = (currentSlide + 1) % slideBoxes.length;
   slideBoxes[currentSlide].classList.add('active');
 
-  // Last slide mudincha
   if(currentSlide === slideBoxes.length - 1){
     setTimeout(() => {
       clearInterval(slideInterval);
@@ -271,7 +271,7 @@ function createHeart(){
   heart.innerHTML = '💙';
   heart.style.left = Math.random() * 100 + '%';
   document.body.appendChild(heart);
-  setTimeout(() => heart.remove(), 7000);
+  setTimeout(() => heart.remove(), 6000);
 }
 </script>
 
