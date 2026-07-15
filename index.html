@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="ta">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sorry Arthi 💙</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Noto+Sans+Tamil:wght@400;500;600&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@400;500;600&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
 
 <style>
 *{
@@ -15,7 +15,7 @@ box-sizing:border-box;
 }
 
 body{
-font-family:'Noto Sans Tamil','Poppins',sans-serif;
+font-family:'Poppins',sans-serif;
 background:linear-gradient(180deg, #87CEEB 0%, #B0E0E6 100%);
 min-height:100vh;
 display:flex;
@@ -60,6 +60,7 @@ font-size:11px;
 font-weight:700;
 color:#0984e3;
 white-space:nowrap;
+letter-spacing:0.5px;
 }
 
 @keyframes floatCloud{
@@ -95,7 +96,6 @@ from{text-shadow:0 0 10px rgba(116,185,255,.6);}
 to{text-shadow:0 0 25px rgba(116,185,255,1);}
 }
 
-/* Photo Container Fix */
 .slide-container{
 width:240px;
 height:340px;
@@ -109,16 +109,15 @@ position:absolute;
 width:100%;
 height:100%;
 opacity:0;
-transform:scale(0.85) rotateY(10deg);
+transform:scale(0.85);
 transition: all 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 .slide-box.active{
 opacity:1;
-transform:scale(1) rotateY(0deg);
+transform:scale(1);
 }
 
-/* Photo Fix - cut aagadhu */
 .img-wrapper{
 width:240px;
 height:240px;
@@ -141,7 +140,7 @@ animation:imgFloat 3s ease-in-out infinite;
 .slide-img{
 width:100%;
 height:100%;
-object-fit:contain; /* full photo varum cut aagadhu */
+object-fit:contain; /* full image no cut */
 background:white;
 }
 
@@ -160,7 +159,7 @@ from{opacity:0; transform:translateY(15px);}
 to{opacity:1; transform:translateY(0);}
 }
 
-#finalChance{
+#finalMsg{
 display:none;
 font-family:'Dancing Script',cursive;
 font-size:26px;
@@ -213,6 +212,7 @@ z-index:1;
 </head>
 <body>
 
+<!-- Clouds - English only -->
 <div class="cloud" style="width:170px; height:55px; top:8%; animation-delay:0s;">
   <div class="cloud-text">KD ACTING GUNDU 💙</div>
 </div>
@@ -222,11 +222,11 @@ z-index:1;
 </div>
 
 <div class="cloud" style="width:160px; height:50px; top:32%; animation-delay:20s;">
-  <div class="cloud-text">ORU CHANCE KUDU</div>
+  <div class="cloud-text">PLEASE FORGIVE ME</div>
 </div>
 
 <div class="cloud" style="width:180px; height:55px; top:45%; animation-delay:5s;">
-  <div class="cloud-text">MANICHUDU PLEASE 😔</div>
+  <div class="cloud-text">I MESSED UP 😔</div>
 </div>
 
 <div class="card">
@@ -234,24 +234,24 @@ z-index:1;
 
 <div class="slide-container" id="slider"></div>
 
-<div id="finalChance">எனக்கு ஒரு chance கொடு please 🙏<br>I promise இனிமே hurt பண்ண மாட்டேன் ❤️</div>
+<div id="finalMsg">I really messed up...<br>Please give me one last chance ❤️</div>
 
 <button id="startBtn">Open My Heart</button>
 
 <div id="btnGroup">
-<button onclick="alert('மன்னித்ததற்கு நன்றி ❤️')">I Forgive You</button>
-<button onclick="alert('பேசுவோமா... நான் wait பண்றேன் 🙏')">Can We Talk?</button>
+<button onclick="alert('Thank you for forgiving me ❤️')">I Forgive You</button>
+<button onclick="alert('I\'m waiting for you... Please talk 🙏')">Can We Talk?</button>
 </div>
 </div>
 
 <script>
 const slides = [
-  {img:"IMG-20240720-WA0034.jpg", text:"நான் sorry அர்தி... நிறைய அழகா கேக்குறேன் 😔"},
-  {img:"IMG-20250126-WA0053.jpg", text:"அன்னைக்கு நான் பண்ணது பெரிய தப்பு"},
-  {img:"IMG-20251112-WA0023.jpg", text:"உன்ன உன் friends முன்னாடி அசிங்க படுத்திட்டேன் 💔"},
-  {img:"IMG-20251224-WA0021.jpg", text:"அத நினைச்சா எனக்கு அழுக வருது"},
-  {img:"IMG-20251224-WA0025.jpg", text:"நம்ம memories எல்லாம் ரொம்ப அழகா இருக்கு"},
-  {img:"image.jpg", text:"Please என்ன மன்னிச்சுடு. உன்ன இல்லாம நான் இல்ல"}
+  {img:"IMG-20240720-WA0034.jpg", text:"I'm really sorry Arthi... I'm saying this with tears in my eyes 😔"},
+  {img:"IMG-20250126-WA0053.jpg", text:"What I did that day was completely wrong"},
+  {img:"IMG-20251112-WA0023.jpg", text:"I embarrassed you in front of your friends 💔"},
+  {img:"IMG-20251224-WA0021.jpg", text:"Thinking about it makes me cry"},
+  {img:"IMG-20251224-WA0025.jpg", text:"All our memories are so beautiful"},
+  {img:"image.jpg", text:"Please forgive me. I can't live without you"}
 ];
 
 let currentSlide = 0;
@@ -281,7 +281,7 @@ function startSorry(){
   document.getElementById('startBtn').style.display = 'none';
   document.getElementById('slider').style.display = 'block';
 
-  slideInterval = setInterval(nextSlide, 5000); // 5 sec kuduthuten
+  slideInterval = setInterval(nextSlide, 5000);
 
   for(let j=0; j<30; j++){
     setTimeout(createHeart, j * 300);
@@ -297,7 +297,7 @@ function nextSlide(){
   if(currentSlide === slideBoxes.length - 1){
     setTimeout(() => {
       clearInterval(slideInterval);
-      document.getElementById('finalChance').style.display = 'block';
+      document.getElementById('finalMsg').style.display = 'block';
       document.getElementById('btnGroup').style.display = 'block';
     }, 5000);
   }
