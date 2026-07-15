@@ -18,114 +18,116 @@ box-sizing:border-box;
 
 body{
 font-family:'Poppins',sans-serif;
-background:linear-gradient(to bottom, #87CEEB 0%, #E0F6FF 50%, #B0E0E6 100%);
+background:linear-gradient(180deg, #87CEEB 0%, #B0E0E6 50%, #E0F6FF 100%);
 min-height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
 padding:20px;
 overflow:hidden;
-position:relative;
-}
-
-.cloud{
-position:absolute;
-background:white;
-border-radius:50%;
-opacity:0.6;
-animation:floatCloud 60s linear infinite;
-}
-
-@keyframes floatCloud{
-0%{transform:translateX(-200px);}
-100%{transform:translateX(100vw);}
 }
 
 .card{
 width:100%;
-max-width:420px;
-background:rgba(255,255,255,.3);
-backdrop-filter:blur(20px);
-border-radius:30px;
+max-width:430px;
+background:rgba(255,255,255,.25);
+backdrop-filter:blur(25px);
+border-radius:35px;
 padding:30px 25px;
 text-align:center;
-box-shadow:0 15px 50px rgba(135,206,235,.4);
+box-shadow:0 20px 60px rgba(135,206,235,.5);
 border:2px solid rgba(255,255,255,.4);
-z-index:10;
+animation:cardFloat 5s ease-in-out infinite;
+}
+
+@keyframes cardFloat{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-8px);}
 }
 
 h1{
 font-family:'Dancing Script',cursive;
-font-size:50px;
+font-size:52px;
 color:#0984e3;
 margin-bottom:15px;
-text-shadow:0 2px 10px rgba(255,255,255,.8);
+text-shadow:0 0 20px rgba(116,185,255,.6);
+animation:glow 2.5s ease-in-out infinite alternate;
 }
 
-.slider-container{
-width:230px;
-height:230px;
+@keyframes glow{
+from{text-shadow:0 0 10px rgba(116,185,255,.6);}
+to{text-shadow:0 0 30px rgba(116,185,255,1);}
+}
+
+.slide-container{
+width:240px;
+height:320px;
 margin:20px auto;
-border-radius:50%;
-border:6px solid white;
-box-shadow:0 10px 30px rgba(0,105,148,.3);
-overflow:hidden;
 position:relative;
 display:none;
 }
 
-.slide{
+.slide-box{
+position:absolute;
 width:100%;
 height:100%;
-object-fit:cover;
-position:absolute;
-top:0;
-left:0;
 opacity:0;
-transition:opacity 1.5s ease-in-out;
+transform:scale(0.8);
+transition: all 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
-.slide.active{
+.slide-box.active{
 opacity:1;
+transform:scale(1);
 }
 
-#messageBox{
+.slide-img{
+width:240px;
+height:240px;
+object-fit:cover;
+border-radius:25px;
+border:5px solid white;
+box-shadow:0 15px 40px rgba(0,105,148,.4);
+animation:imgPulse 3s ease-in-out infinite;
+}
+
+@keyframes imgPulse{
+0%,100%{box-shadow:0 15px 40px rgba(0,105,148,.4);}
+50%{box-shadow:0 20px 50px rgba(116,185,255,.7);}
+}
+
+.slide-text{
+margin-top:15px;
 color:#2d3436;
-font-size:17px;
-line-height:1.9;
-min-height:150px;
-margin:25px 0;
+font-size:16px;
+line-height:1.7;
 font-weight:500;
-display:none;
+min-height:60px;
+animation:fadeUp 1s ease;
 }
 
-.cursor{
-border-right:3px solid #0984e3;
-animation:blink 0.8s infinite;
-}
-
-@keyframes blink{
-50%{border-color:transparent;}
+@keyframes fadeUp{
+from{opacity:0; transform:translateY(20px);}
+to{opacity:1; transform:translateY(0);}
 }
 
 #finalChance{
 display:none;
 font-family:'Dancing Script',cursive;
-font-size:28px;
+font-size:30px;
 color:#0984e3;
 margin:20px 0;
-animation:fadeInPop 1.2s ease;
-text-shadow:0 2px 10px rgba(116,185,255,.5);
+animation:fadeInPop 1.5s ease;
 }
 
 @keyframes fadeInPop{
-0%{opacity:0; transform:scale(0.5);}
-70%{transform:scale(1.1);}
-100%{opacity:1; transform:scale(1);}
+0%{opacity:0; transform:scale(0.5) rotate(-5deg);}
+70%{transform:scale(1.1) rotate(2deg);}
+100%{opacity:1; transform:scale(1) rotate(0);}
 }
 
 button{
-padding:15px 35px;
+padding:16px 38px;
 border:none;
 border-radius:50px;
 background:linear-gradient(135deg,#74b9ff,#0984e3);
@@ -135,12 +137,12 @@ font-weight:600;
 cursor:pointer;
 margin:10px;
 transition:0.4s;
-box-shadow:0 8px 20px rgba(116,185,255,.4);
-font-family:'Poppins',sans-serif;
+box-shadow:0 8px 25px rgba(116,185,255,.5);
 }
 
 button:hover{
-transform:translateY(-4px);
+transform:translateY(-5px) scale(1.05);
+box-shadow:0 15px 35px rgba(116,185,255,.7);
 }
 
 #btnGroup{
@@ -148,37 +150,40 @@ display:none;
 animation:fadeIn 1s ease;
 }
 
-@keyframes fadeIn{
-from{opacity:0;}
-to{opacity:1;}
-}
-
 .heart{
 position:absolute;
-font-size:25px;
-animation:floatHeart 6s ease-in infinite;
+font-size:28px;
+animation:floatHeart 7s ease-in infinite;
 opacity:0;
-color:#0984e3;
-z-index:1;
+color:#74b9ff;
 }
 
 @keyframes floatHeart{
-0%{transform:translateY(100vh) rotate(0deg); opacity:1;}
-100%{transform:translateY(-100vh) rotate(360deg); opacity:0;}
+0%{transform:translateY(100vh) scale(0) rotate(0deg); opacity:1;}
+100%{transform:translateY(-100vh) scale(1.5) rotate(720deg); opacity:0;}
+}
+
+.sparkle{
+position:absolute;
+width:4px;
+height:4px;
+background:white;
+border-radius:50%;
+animation:sparkleAnim 2s infinite;
+}
+
+@keyframes sparkleAnim{
+0%,100%{opacity:0; transform:scale(0);}
+50%{opacity:1; transform:scale(1);}
 }
 </style>
 </head>
 <body>
 
-<div class="cloud" style="width:100px; height:40px; top:10%;"></div>
-<div class="cloud" style="width:150px; height:50px; top:25%; animation-delay:20s;"></div>
-
 <div class="card">
 <h1>Sorry Arthi 💙</h1>
 
-<div class="slider-container" id="slider"></div>
-
-<div id="messageBox"></div>
+<div class="slide-container" id="slider"></div>
 
 <div id="finalChance">Enakku oru chance kudu please 🙏<br>I promise I won't hurt you again ❤️</div>
 
@@ -191,45 +196,42 @@ z-index:1;
 </div>
 
 <script>
-const photos = [
-  "IMG-20240720-WA0034.jpg",
-  "IMG-20250126-WA0053.jpg",
-  "IMG-20251112-WA0023.jpg",
-  "IMG-20251224-WA0021.jpg",
-  "IMG-20251224-WA0025.jpg",
-  "image.jpg"
+// Photo + Message together
+const slides = [
+  {img:"IMG-20240720-WA0034.jpg", text:"Naa sryy Arthi... neraiya alaga kekuren 😔"},
+  {img:"IMG-20250126-WA0053.jpg", text:"Anaiku naa panna adhu periya thappu"},
+  {img:"IMG-20251112-WA0023.jpg", text:"Unna un frnds munadi asinga paduthiten 💔"},
+  {img:"IMG-20251224-WA0021.jpg", text:"Adha nenaicha enaku azhuga varudhu"},
+  {img:"IMG-20251224-WA0025.jpg", text:"Namma memories ellam romba azhaga iruku"},
+  {img:"image.jpg", text:"Please enna mannichudu. Unna illama naan illa"}
 ];
 
-const fullMessage = `Arthi... 💙
-
-Naa sryy da... neraiya alaga kekuren 😔
-
-Anaiku naa panna adhu periya thappu.
-Unna un frnds munadi asinga paduthiten.
-Adha nenaicha enaku azhuga varudhu.
-
-Namma memories ellam romba azhaga iruku.
-Oru kovathula adha spoil pannen.
-
-Please enna mannichudu.
-Unna illama naan illa.
-Inime apdi nadakave nadakathu, promise.`;
-
 let currentSlide = 0;
-let textIndex = 0;
-let slideInterval;
 let started = false;
+let slideInterval;
 
-// Create images
+// Create slides
 const slider = document.getElementById('slider');
-photos.forEach((src, index) => {
-  let img = document.createElement('img');
-  img.src = src;
-  img.className = 'slide';
-  img.onerror = function(){ this.style.display='none'; }
-  if(index === 0) img.classList.add('active');
-  slider.appendChild(img);
+slides.forEach((slide, index) => {
+  let div = document.createElement('div');
+  div.className = 'slide-box';
+  div.innerHTML = `
+    <img src="${slide.img}" class="slide-img" onerror="this.style.display='none'">
+    <div class="slide-text">${slide.text}</div>
+  `;
+  if(index === 0) div.classList.add('active');
+  slider.appendChild(div);
 });
+
+// Sparkles
+for(let i=0; i<20; i++){
+  let spark = document.createElement('div');
+  spark.className = 'sparkle';
+  spark.style.left = Math.random() * 100 + '%';
+  spark.style.top = Math.random() * 100 + '%';
+  spark.style.animationDelay = Math.random() * 2 + 's';
+  document.querySelector('.card').appendChild(spark);
+}
 
 document.getElementById('startBtn').addEventListener('click', startSorry);
 
@@ -239,39 +241,27 @@ function startSorry(){
 
   document.getElementById('startBtn').style.display = 'none';
   document.getElementById('slider').style.display = 'block';
-  document.getElementById('messageBox').style.display = 'block';
 
-  slideInterval = setInterval(nextSlide, 4000);
-  typeMessage();
+  slideInterval = setInterval(nextSlide, 4500);
 
-  for(let j=0; j<30; j++){
-    setTimeout(createHeart, j * 300);
+  for(let j=0; j<40; j++){
+    setTimeout(createHeart, j * 250);
   }
 }
 
 function nextSlide(){
-  const slides = document.querySelectorAll('.slide');
-  if(slides.length === 0) return;
-  slides[currentSlide].classList.remove('active');
-  currentSlide = (currentSlide + 1) % slides.length;
-  slides[currentSlide].classList.add('active');
-}
+  const slideBoxes = document.querySelectorAll('.slide-box');
+  slideBoxes[currentSlide].classList.remove('active');
+  currentSlide = (currentSlide + 1) % slideBoxes.length;
+  slideBoxes[currentSlide].classList.add('active');
 
-function typeMessage(){
-  if(textIndex < fullMessage.length){
-    let char = fullMessage.charAt(textIndex);
-    document.getElementById('messageBox').innerHTML += char === '\n'? '<br>' : char;
-    document.getElementById('messageBox').innerHTML += '<span class="cursor"></span>';
-    textIndex++;
-    setTimeout(typeMessage, 65);
-  } else {
-    let cursor = document.querySelector('.cursor');
-    if(cursor) cursor.remove();
-
-    // Last la "oru chance" message + buttons varum
-    document.getElementById('finalChance').style.display = 'block';
-    document.getElementById('btnGroup').style.display = 'block';
-    clearInterval(slideInterval);
+  // Last slide mudincha
+  if(currentSlide === slideBoxes.length - 1){
+    setTimeout(() => {
+      clearInterval(slideInterval);
+      document.getElementById('finalChance').style.display = 'block';
+      document.getElementById('btnGroup').style.display = 'block';
+    }, 4500);
   }
 }
 
@@ -281,7 +271,7 @@ function createHeart(){
   heart.innerHTML = '💙';
   heart.style.left = Math.random() * 100 + '%';
   document.body.appendChild(heart);
-  setTimeout(() => heart.remove(), 6000);
+  setTimeout(() => heart.remove(), 7000);
 }
 </script>
 
