@@ -30,14 +30,15 @@ position:relative;
 position:absolute;
 background:white;
 border-radius:50px;
-opacity:0.9;
-animation:floatCloud 40s linear infinite;
+opacity:0.85;
+animation:floatCloud 35s linear infinite;
 display:flex;
 align-items:center;
 justify-content:center;
-padding:10px 20px;
-box-shadow:0 5px 15px rgba(0,0,0,.1);
-z-index:0;
+padding:8px 18px;
+box-shadow:0 8px 20px rgba(0,0,0,.15);
+z-index:5;
+pointer-events:none;
 }
 
 .cloud:before,.cloud:after{
@@ -45,40 +46,31 @@ content:'';
 position:absolute;
 background:white;
 border-radius:50%;
+z-index:5;
 }
 
-.cloud:before{
-width:50px;
-height:50px;
-top:-15px;
-left:15px;
-}
-.cloud:after{
-width:60px;
-height:60px;
-top:-20px;
-right:15px;
-}
+.cloud:before{width:45px;height:45px;top:-12px;left:12px;}
+.cloud:after{width:55px;height:55px;top:-18px;right:12px;}
 
 .cloud-text{
 position:relative;
-z-index:2;
+z-index:6;
 font-family:'Quicksand',sans-serif;
-font-size:12px;
+font-size:11px;
 font-weight:700;
 color:#0984e3;
 white-space:nowrap;
 }
 
 @keyframes floatCloud{
-0%{transform:translateX(-300px);}
-100%{transform:translateX(100vw);}
+0%{transform:translateX(-250px);}
+100%{transform:translateX(calc(100vw + 250px));}
 }
 
 .card{
 width:100%;
 max-width:420px;
-background:rgba(255,255,255,.35);
+background:rgba(255,255,255,.4);
 backdrop-filter:blur(25px);
 border-radius:25px;
 padding:20px;
@@ -87,6 +79,7 @@ text-align:center;
 box-shadow:0 15px 40px rgba(135,206,235,.4);
 border:2px solid rgba(255,255,255,.4);
 z-index:10;
+position:relative;
 }
 
 h1{
@@ -94,11 +87,18 @@ font-family:'Dancing Script',cursive;
 font-size:44px;
 color:#0984e3;
 margin-bottom:12px;
+animation:glow 2s ease-in-out infinite alternate;
 }
 
+@keyframes glow{
+from{text-shadow:0 0 10px rgba(116,185,255,.6);}
+to{text-shadow:0 0 25px rgba(116,185,255,1);}
+}
+
+/* Photo Container Fix */
 .slide-container{
-width:220px;
-height:300px;
+width:240px;
+height:340px;
 margin:12px auto;
 position:relative;
 display:none;
@@ -109,31 +109,55 @@ position:absolute;
 width:100%;
 height:100%;
 opacity:0;
-transform:scale(0.9);
-transition: all 1s ease;
+transform:scale(0.85) rotateY(10deg);
+transition: all 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 .slide-box.active{
 opacity:1;
-transform:scale(1);
+transform:scale(1) rotateY(0deg);
+}
+
+/* Photo Fix - cut aagadhu */
+.img-wrapper{
+width:240px;
+height:240px;
+border-radius:20px;
+border:4px solid white;
+box-shadow:0 10px 30px rgba(0,105,148,.4);
+overflow:hidden;
+background:#f0f0f0;
+display:flex;
+align-items:center;
+justify-content:center;
+animation:imgFloat 3s ease-in-out infinite;
+}
+
+@keyframes imgFloat{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-5px);}
 }
 
 .slide-img{
-width:220px;
-height:220px;
-object-fit:cover;
-border-radius:20px;
-border:4px solid white;
-box-shadow:0 10px 25px rgba(0,105,148,.3);
+width:100%;
+height:100%;
+object-fit:contain; /* full photo varum cut aagadhu */
+background:white;
 }
 
 .slide-text{
-margin-top:12px;
+margin-top:15px;
 color:#2d3436;
-font-size:16px;
-line-height:1.7;
+font-size:17px;
+line-height:1.8;
 font-weight:500;
-min-height:50px;
+min-height:60px;
+animation:textFade 1s ease;
+}
+
+@keyframes textFade{
+from{opacity:0; transform:translateY(15px);}
+to{opacity:1; transform:translateY(0);}
 }
 
 #finalChance{
@@ -142,6 +166,13 @@ font-family:'Dancing Script',cursive;
 font-size:26px;
 color:#0984e3;
 margin:15px 0;
+animation:popIn 1.2s ease;
+}
+
+@keyframes popIn{
+0%{opacity:0; transform:scale(0.5);}
+70%{transform:scale(1.1);}
+100%{opacity:1; transform:scale(1);}
 }
 
 button{
@@ -154,6 +185,12 @@ font-size:16px;
 font-weight:600;
 cursor:pointer;
 margin:8px;
+transition:0.3s;
+}
+
+button:hover{
+transform:translateY(-3px);
+box-shadow:0 10px 25px rgba(116,185,255,.5);
 }
 
 #btnGroup{
@@ -169,27 +206,26 @@ z-index:1;
 }
 
 @keyframes floatHeart{
-0%{transform:translateY(100vh); opacity:1;}
-100%{transform:translateY(-100vh); opacity:0;}
+0%{transform:translateY(100vh) rotate(0deg); opacity:1;}
+100%{transform:translateY(-100vh) rotate(360deg); opacity:0;}
 }
 </style>
 </head>
 <body>
 
-<!-- Clouds with Sorry text only -->
-<div class="cloud" style="width:180px; height:60px; top:8%; animation-delay:0s;">
+<div class="cloud" style="width:170px; height:55px; top:8%; animation-delay:0s;">
   <div class="cloud-text">KD ACTING GUNDU 💙</div>
 </div>
 
-<div class="cloud" style="width:200px; height:65px; top:20%; animation-delay:15s;">
+<div class="cloud" style="width:190px; height:60px; top:18%; animation-delay:10s;">
   <div class="cloud-text">SORRY ARTHI 🙏</div>
 </div>
 
-<div class="cloud" style="width:170px; height:55px; top:35%; animation-delay:30s;">
+<div class="cloud" style="width:160px; height:50px; top:32%; animation-delay:20s;">
   <div class="cloud-text">ORU CHANCE KUDU</div>
 </div>
 
-<div class="cloud" style="width:190px; height:60px; top:50%; animation-delay:5s;">
+<div class="cloud" style="width:180px; height:55px; top:45%; animation-delay:5s;">
   <div class="cloud-text">MANICHUDU PLEASE 😔</div>
 </div>
 
@@ -227,7 +263,9 @@ slides.forEach((slide, index) => {
   let div = document.createElement('div');
   div.className = 'slide-box';
   div.innerHTML = `
-    <img src="${slide.img}" class="slide-img" onerror="this.style.display='none'">
+    <div class="img-wrapper">
+      <img src="${slide.img}" class="slide-img" onerror="this.style.display='none'">
+    </div>
     <div class="slide-text">${slide.text}</div>
   `;
   if(index === 0) div.classList.add('active');
@@ -243,7 +281,7 @@ function startSorry(){
   document.getElementById('startBtn').style.display = 'none';
   document.getElementById('slider').style.display = 'block';
 
-  slideInterval = setInterval(nextSlide, 4500);
+  slideInterval = setInterval(nextSlide, 5000); // 5 sec kuduthuten
 
   for(let j=0; j<30; j++){
     setTimeout(createHeart, j * 300);
@@ -261,7 +299,7 @@ function nextSlide(){
       clearInterval(slideInterval);
       document.getElementById('finalChance').style.display = 'block';
       document.getElementById('btnGroup').style.display = 'block';
-    }, 4500);
+    }, 5000);
   }
 }
 
