@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sorry Arthi 💙</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@400;500;600&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;500;600&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
 
 <style>
 *{
@@ -16,51 +16,43 @@ box-sizing:border-box;
 
 body{
 font-family:'Poppins',sans-serif;
-background:linear-gradient(180deg, #87CEEB 0%, #B0E0E6 100%);
-min-height:100vh;
-display:flex;
-justify-content:center;
-align-items:flex-start;
-padding:15px 20px;
-overflow-x:hidden;
-position:relative;
+background:#0a0a0a;
+overflow:hidden;
 }
 
 .cloud{
 position:absolute;
-background:white;
+background:rgba(255,255,255,0.8);
 border-radius:50px;
-opacity:0.85;
-animation:floatCloud 35s linear infinite;
+opacity:0.7;
+animation:floatCloud 40s linear infinite;
 display:flex;
 align-items:center;
 justify-content:center;
 padding:8px 18px;
-box-shadow:0 8px 20px rgba(0,0,0,.15);
-z-index:5;
+z-index:20;
 pointer-events:none;
+backdrop-filter:blur(5px);
 }
 
 .cloud:before,.cloud:after{
 content:'';
 position:absolute;
-background:white;
+background:rgba(255,255,255,0.8);
 border-radius:50%;
-z-index:5;
 }
 
-.cloud:before{width:45px;height:45px;top:-12px;left:12px;}
-.cloud:after{width:55px;height:55px;top:-18px;right:12px;}
+.cloud:before{width:40px;height:40px;top:-10px;left:10px;}
+.cloud:after{width:50px;height:50px;top:-15px;right:10px;}
 
 .cloud-text{
 position:relative;
-z-index:6;
+z-index:21;
 font-family:'Quicksand',sans-serif;
-font-size:11px;
+font-size:10px;
 font-weight:700;
 color:#0984e3;
 white-space:nowrap;
-letter-spacing:0.5px;
 }
 
 @keyframes floatCloud{
@@ -68,250 +60,184 @@ letter-spacing:0.5px;
 100%{transform:translateX(calc(100vw + 250px));}
 }
 
-.card{
-width:100%;
-max-width:420px;
-background:rgba(255,255,255,.4);
-backdrop-filter:blur(25px);
-border-radius:25px;
-padding:20px;
-margin-top:10px;
-text-align:center;
-box-shadow:0 15px 40px rgba(135,206,235,.4);
-border:2px solid rgba(255,255,255,.4);
-z-index:10;
+.slider{
+width:100vw;
+height:100vh;
 position:relative;
 }
 
-h1{
-font-family:'Dancing Script',cursive;
-font-size:44px;
-color:#0984e3;
-margin-bottom:12px;
-animation:glow 2s ease-in-out infinite alternate;
-}
-
-@keyframes glow{
-from{text-shadow:0 0 10px rgba(116,185,255,.6);}
-to{text-shadow:0 0 25px rgba(116,185,255,1);}
-}
-
-.slide-container{
-width:240px;
-height:340px;
-margin:12px auto;
-position:relative;
-display:none;
-}
-
-.slide-box{
+.slide{
 position:absolute;
 width:100%;
 height:100%;
 opacity:0;
-transform:scale(0.85);
-transition: all 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+transition: opacity 2s ease;
 }
 
-.slide-box.active{
+.slide.active{
 opacity:1;
-transform:scale(1);
-}
-
-.img-wrapper{
-width:240px;
-height:240px;
-border-radius:20px;
-border:4px solid white;
-box-shadow:0 10px 30px rgba(0,105,148,.4);
-overflow:hidden;
-background:#f0f0f0;
-display:flex;
-align-items:center;
-justify-content:center;
-animation:imgFloat 3s ease-in-out infinite;
-}
-
-@keyframes imgFloat{
-0%,100%{transform:translateY(0);}
-50%{transform:translateY(-5px);}
 }
 
 .slide-img{
 width:100%;
 height:100%;
-object-fit:contain; /* full image no cut */
-background:white;
+object-fit:cover; /* full screen photo */
+filter:brightness(0.7);
 }
 
-.slide-text{
-margin-top:15px;
-color:#2d3436;
-font-size:17px;
-line-height:1.8;
-font-weight:500;
-min-height:60px;
-animation:textFade 1s ease;
+.glass-msg{
+position:absolute;
+bottom:80px;
+left:50%;
+transform:translateX(-50%);
+width:90%;
+max-width:380px;
+background:rgba(255,255,255,0.15);
+backdrop-filter:blur(20px);
+border-radius:20px;
+padding:20px;
+border:1px solid rgba(255,255,255,0.3);
+box-shadow:0 8px 32px rgba(0,0,0,0.3);
+animation:slideUp 1.5s ease;
 }
 
-@keyframes textFade{
-from{opacity:0; transform:translateY(15px);}
-to{opacity:1; transform:translateY(0);}
+@keyframes slideUp{
+from{opacity:0; transform:translateX(-50%) translateY(50px);}
+to{opacity:1; transform:translateX(-50%) translateY(0);}
+}
+
+.glass-msg p{
+color:white;
+font-size:18px;
+font-weight:400;
+line-height:1.7;
+text-align:center;
+text-shadow:0 2px 10px rgba(0,0,0,0.5);
+}
+
+h1{
+position:absolute;
+top:30px;
+left:50%;
+transform:translateX(-50%);
+font-family:'Dancing Script',cursive;
+font-size:48px;
+color:white;
+z-index:15;
+text-shadow:0 4px 20px rgba(0,0,0,0.7);
+animation:glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes glow{
+from{text-shadow:0 4px 20px rgba(255,255,255,0.5);}
+to{text-shadow:0 4px 30px rgba(116,185,255,1);}
+}
+
+#startBtn{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+padding:18px 45px;
+border:none;
+border-radius:50px;
+background:rgba(255,255,255,0.2);
+backdrop-filter:blur(15px);
+color:white;
+font-size:18px;
+font-weight:600;
+cursor:pointer;
+z-index:25;
+border:2px solid rgba(255,255,255,0.4);
+transition:0.4s;
+}
+
+#startBtn:hover{
+background:rgba(255,255,255,0.3);
+transform:translate(-50%,-50%) scale(1.1);
 }
 
 #finalMsg{
+position:absolute;
+bottom:120px;
+left:50%;
+transform:translateX(-50%);
 display:none;
+text-align:center;
+z-index:15;
+}
+
+#finalMsg p{
 font-family:'Dancing Script',cursive;
-font-size:26px;
-color:#0984e3;
-margin:15px 0;
-animation:popIn 1.2s ease;
-}
-
-@keyframes popIn{
-0%{opacity:0; transform:scale(0.5);}
-70%{transform:scale(1.1);}
-100%{opacity:1; transform:scale(1);}
-}
-
-button{
-padding:14px 30px;
-border:none;
-border-radius:50px;
-background:linear-gradient(135deg,#74b9ff,#0984e3);
+font-size:28px;
 color:white;
-font-size:16px;
-font-weight:600;
-cursor:pointer;
-margin:8px;
-transition:0.3s;
-}
-
-button:hover{
-transform:translateY(-3px);
-box-shadow:0 10px 25px rgba(116,185,255,.5);
+text-shadow:0 2px 15px rgba(0,0,0,0.7);
+margin-bottom:20px;
 }
 
 #btnGroup{
 display:none;
 }
 
+#btnGroup button{
+padding:14px 30px;
+margin:8px;
+border:none;
+border-radius:50px;
+background:rgba(255,255,255,0.25);
+backdrop-filter:blur(15px);
+color:white;
+font-size:16px;
+font-weight:600;
+cursor:pointer;
+border:1px solid rgba(255,255,255,0.4);
+}
+
 .heart{
 position:absolute;
-font-size:22px;
-animation:floatHeart 6s ease-in infinite;
-color:#0984e3;
-z-index:1;
+font-size:20px;
+animation:floatHeart 8s ease-in infinite;
+color:rgba(255,255,255,0.8);
+z-index:10;
 }
 
 @keyframes floatHeart{
-0%{transform:translateY(100vh) rotate(0deg); opacity:1;}
-100%{transform:translateY(-100vh) rotate(360deg); opacity:0;}
+0%{transform:translateY(100vh) rotate(0deg); opacity:0;}
+10%{opacity:1;}
+90%{opacity:1;}
+100%{transform:translateY(-100vh) rotate(720deg); opacity:0;}
 }
 </style>
 </head>
 <body>
 
-<!-- Clouds - English only -->
-<div class="cloud" style="width:170px; height:55px; top:8%; animation-delay:0s;">
-  <div class="cloud-text">KD ACTING GUNDU 💙</div>
+<div class="cloud" style="width:160px; height:50px; top:10%; animation-delay:0s;">
+  <div class="cloud-text">KD ACTING GUNDU</div>
 </div>
 
-<div class="cloud" style="width:190px; height:60px; top:18%; animation-delay:10s;">
-  <div class="cloud-text">SORRY ARTHI 🙏</div>
+<div class="cloud" style="width:180px; height:55px; top:22%; animation-delay:12s;">
+  <div class="cloud-text">SORRY ARTHI</div>
 </div>
 
-<div class="cloud" style="width:160px; height:50px; top:32%; animation-delay:20s;">
-  <div class="cloud-text">PLEASE FORGIVE ME</div>
+<div class="cloud" style="width:170px; height:50px; top:38%; animation-delay:24s;">
+  <div class="cloud-text">PLEASE FORGIVE</div>
 </div>
 
-<div class="cloud" style="width:180px; height:55px; top:45%; animation-delay:5s;">
-  <div class="cloud-text">I MESSED UP 😔</div>
-</div>
-
-<div class="card">
 <h1>Sorry Arthi 💙</h1>
 
-<div class="slide-container" id="slider"></div>
+<button id="startBtn">Tap to Start</button>
 
-<div id="finalMsg">I really messed up...<br>Please give me one last chance ❤️</div>
+<div class="slider" id="slider"></div>
 
-<button id="startBtn">Open My Heart</button>
-
-<div id="btnGroup">
-<button onclick="alert('Thank you for forgiving me ❤️')">I Forgive You</button>
-<button onclick="alert('I\'m waiting for you... Please talk 🙏')">Can We Talk?</button>
-</div>
+<div id="finalMsg">
+  <p>I really messed up... Please forgive me ❤️</p>
+  <div id="btnGroup">
+    <button onclick="alert('Thank you ❤️')">I Forgive You</button>
+    <button onclick="alert('I\'m waiting 🙏')">Can We Talk?</button>
+  </div>
 </div>
 
 <script>
 const slides = [
-  {img:"IMG-20240720-WA0034.jpg", text:"I'm really sorry Arthi... I'm saying this with tears in my eyes 😔"},
-  {img:"IMG-20250126-WA0053.jpg", text:"What I did that day was completely wrong"},
-  {img:"IMG-20251112-WA0023.jpg", text:"I embarrassed you in front of your friends 💔"},
-  {img:"IMG-20251224-WA0021.jpg", text:"Thinking about it makes me cry"},
-  {img:"IMG-20251224-WA0025.jpg", text:"All our memories are so beautiful"},
-  {img:"image.jpg", text:"Please forgive me. I can't live without you"}
-];
-
-let currentSlide = 0;
-let started = false;
-let slideInterval;
-
-const slider = document.getElementById('slider');
-slides.forEach((slide, index) => {
-  let div = document.createElement('div');
-  div.className = 'slide-box';
-  div.innerHTML = `
-    <div class="img-wrapper">
-      <img src="${slide.img}" class="slide-img" onerror="this.style.display='none'">
-    </div>
-    <div class="slide-text">${slide.text}</div>
-  `;
-  if(index === 0) div.classList.add('active');
-  slider.appendChild(div);
-});
-
-document.getElementById('startBtn').addEventListener('click', startSorry);
-
-function startSorry(){
-  if(started) return;
-  started = true;
-
-  document.getElementById('startBtn').style.display = 'none';
-  document.getElementById('slider').style.display = 'block';
-
-  slideInterval = setInterval(nextSlide, 5000);
-
-  for(let j=0; j<30; j++){
-    setTimeout(createHeart, j * 300);
-  }
-}
-
-function nextSlide(){
-  const slideBoxes = document.querySelectorAll('.slide-box');
-  slideBoxes[currentSlide].classList.remove('active');
-  currentSlide = (currentSlide + 1) % slideBoxes.length;
-  slideBoxes[currentSlide].classList.add('active');
-
-  if(currentSlide === slideBoxes.length - 1){
-    setTimeout(() => {
-      clearInterval(slideInterval);
-      document.getElementById('finalMsg').style.display = 'block';
-      document.getElementById('btnGroup').style.display = 'block';
-    }, 5000);
-  }
-}
-
-function createHeart(){
-  const heart = document.createElement('div');
-  heart.classList.add('heart');
-  heart.innerHTML = '💙';
-  heart.style.left = Math.random() * 100 + '%';
-  document.body.appendChild(heart);
-  setTimeout(() => heart.remove(), 6000);
-}
-</script>
-
-</body>
-</html>
+  {img:"IMG-20240720-WA0034.jpg", text:"I'm truly sorry... I never meant to hurt you like this"},
+  {img:"IMG-20250126
